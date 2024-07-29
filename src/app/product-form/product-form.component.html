@@ -1,0 +1,31 @@
+<form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="name">Name:</label>
+      <input id="name" formControlName="name" />
+      <div *ngIf="productForm.controls['name'].invalid && productForm.controls['name'].touched">
+        <small *ngIf="productForm.controls['name'].errors?.['required']">Name is required.</small>
+        <small *ngIf="productForm.controls['name'].errors?.['minlength']">Name must be at least 3 characters long.</small>
+      </div>
+    </div>
+  
+    <div>
+      <label for="description">Description:</label>
+      <textarea id="description" formControlName="description"></textarea>
+      <div *ngIf="productForm.controls['description'].invalid && productForm.controls['description'].touched">
+        <small *ngIf="productForm.controls['description'].errors?.['required']">Description is required.</small>
+        <small *ngIf="productForm.controls['description'].errors?.['minlength']">Description must be at least 10 characters long.</small>
+      </div>
+    </div>
+  
+    <div>
+      <label for="price">Price:</label>
+      <input id="price" formControlName="price" type="number" />
+      <div *ngIf="productForm.controls['price'].invalid && productForm.controls['price'].touched">
+        <small *ngIf="productForm.controls['price'].errors?.['required']">Price is required.</small>
+        <small *ngIf="productForm.controls['price'].errors?.['min']">Price must be a positive number.</small>
+      </div>
+    </div>
+  
+    <button type="submit" [disabled]="productForm.invalid">Add Product</button>
+  </form>
+  
